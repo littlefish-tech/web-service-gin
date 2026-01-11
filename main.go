@@ -22,37 +22,21 @@ var albums = []album{
     {ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
-//assign the handler function to an endpoint path.
-//This sets up an association in which getAlbums handles requests to the /albums endpoint path.
-// func main() {
-//     router := gin.Default()
-//     router.GET("/albums", getAlbums)
-
-//     router.Run("localhost:8080")
-// }
-
-// Adding router.POST function
-/* Change main function so that it includes the router.POST function, as in the following.
- Associate the POST method at the /albums path with the postAlbums function.
- */
-// func main() {
-//     router := gin.Default()
-//     router.GET("/albums", getAlbums)
-//     router.POST("/albums", postAlbums)
-
-//     router.Run("localhost:8080")
-// }
-
-// Adding router.Get function
-/*change your main so that it includes a new call to router.GET,
-where the path is now /albums/:id, as shown in the following example.
+/*
+func main() is the entry point of the program
+when running a Go Application, execution always starts from the main() function
+it must be inside a package named main
 */
 func main() {
+    // Initialize a Gin router using Default.
     router := gin.Default()
+    // Use the GET function to associate the GET HTTP method and /albums path with a handler function.
     router.GET("/albums", getAlbums)
+    // Associate the /albums/:id path with the getAlbumByID function
     router.GET("/albums/:id", getAlbumByID)
+    // Associate the POST method at the /albums path with the postAlbums function.
     router.POST("/albums", postAlbums)
-
+    // Use the Run function to attach the router to an http.Server and start the server.
     router.Run("localhost:8080")
 }
 // getAlbums responds with the list of all albums as JSON.
