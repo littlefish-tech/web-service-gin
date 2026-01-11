@@ -31,8 +31,10 @@ var albums = []album{
 //     router.Run("localhost:8080")
 // }
 
-// Change main function so that it includes the router.POST function, as in the following.
-// Associate the POST method at the /albums path with the postAlbums function.
+// Adding router.POST function
+/* Change main function so that it includes the router.POST function, as in the following.
+ Associate the POST method at the /albums path with the postAlbums function.
+ */
 // func main() {
 //     router := gin.Default()
 //     router.GET("/albums", getAlbums)
@@ -41,8 +43,10 @@ var albums = []album{
 //     router.Run("localhost:8080")
 // }
 
-//change your main so that it includes a new call to router.GET,
-// where the path is now /albums/:id, as shown in the following example.
+// Adding router.Get function
+/*change your main so that it includes a new call to router.GET,
+where the path is now /albums/:id, as shown in the following example.
+*/
 func main() {
     router := gin.Default()
     router.GET("/albums", getAlbums)
@@ -56,11 +60,11 @@ func getAlbums(c *gin.Context) {
     c.IndentedJSON(http.StatusOK, albums)
 }
 
-// postAlbums adds an album from JSON received in the request body.
-
-//Use Context.BindJSON to bind the request body to newAlbum.
-//Append the album struct initialized from the JSON to the albums slice.
-//Add a 201 status code to the response, along with JSON representing the album you added.
+/* postAlbums adds an album from JSON received in the request body.
+Use Context.BindJSON to bind the request body to newAlbum.
+Append the album struct initialized from the JSON to the albums slice.
+Add a 201 status code to the response, along with JSON representing the album you added.
+*/
 func postAlbums(c *gin.Context) {
     var newAlbum album
 
@@ -75,11 +79,12 @@ func postAlbums(c *gin.Context) {
     c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
-// getAlbumByID locates the album whose ID value matches the id
-// parameter sent by the client, then returns that album as a response.
-//Use Context.Param to retrieve the id path parameter from the URL. When you map this handler to a path, you’ll include a placeholder for the parameter in the path.
-//Loop over the album structs in the slice, looking for one whose ID field value matches the id parameter value. If it’s found, you serialize that album struct to JSON and return it as a response with a 200 OK HTTP code.
-//As mentioned above, a real-world service would likely use a database query to perform this lookup.
+/* getAlbumByID locates the album whose ID value matches the id
+parameter sent by the client, then returns that album as a response.
+Use Context.Param to retrieve the id path parameter from the URL. When you map this handler to a path, you’ll include a placeholder for the parameter in the path.
+/Loop over the album structs in the slice, looking for one whose ID field value matches the id parameter value. If it’s found, you serialize that album struct to JSON and return it as a response with a 200 OK HTTP code.
+As mentioned above, a real-world service would likely use a database query to perform this lookup.
+*/
 
 //Return an HTTP 404 error with http.StatusNotFound if the album isn’t found.
 func getAlbumByID(c *gin.Context) {
